@@ -17,7 +17,7 @@ namespace Algorithms.Test
             int[] collection = null;
 
             // Act
-            Action action = () => new InsertionSort().Sort(collection);
+            Action action = () => collection.Sort();
 
             // Assert
             Assert.Throws<ArgumentNullException>(action);
@@ -30,7 +30,7 @@ namespace Algorithms.Test
             var collection = new[] { 5, 2, 4, 6, 1, 3 };
 
             // Act
-            new InsertionSort().Sort(collection, SortDirection.Desc);
+            collection.Sort(SortDirection.Desc);
 
             // Assert
             Assert.Equal(6, collection[0]);
@@ -48,7 +48,7 @@ namespace Algorithms.Test
             var collection = new[] { 5, 2, 4, 6, 1, 3 };
 
             // Act
-            new InsertionSort().Sort(collection);
+            collection.Sort();
 
             // Assert
             Assert.Equal(1, collection[0]);

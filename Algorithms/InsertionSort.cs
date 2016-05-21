@@ -6,9 +6,9 @@ namespace Algorithms
     using System;
     using System.Collections.Generic;
 
-    public class InsertionSort
+    public static class InsertionSort
     {
-        public void Sort<T>(IList<T> list, SortDirection direction = SortDirection.Asc)
+        public static void Sort<T>(this IList<T> list, SortDirection direction = SortDirection.Asc)
         {
             if (list == null)
             {
@@ -24,11 +24,11 @@ namespace Algorithms
 
                 if (direction == SortDirection.Asc)
                 {
-                    comparison = (sortedIntem, currentIntem) => sortedIntem > currentIntem;
+                    comparison = (sorted, current) => sorted > current;
                 }
                 else
                 {
-                    comparison = (sortedIntem, currentIntem) => sortedIntem < currentIntem;
+                    comparison = (sorted, current) => sorted < current;
                 }
 
                 while (i >= 0 && comparison(list[i].GetHashCode(), currentItem.GetHashCode()))
