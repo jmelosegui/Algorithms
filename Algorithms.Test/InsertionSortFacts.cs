@@ -1,12 +1,28 @@
 ﻿// Copyright (c) to jmelosegui. All rights reserved.
 // Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
 
+using System;
+using Xunit.Sdk;
+
 namespace Algorithms.Test
 {
     using Xunit;
 
     public class InsertionSortFacts
     {
+        [Fact]
+        public void ThrowNullException()
+        {
+            // Arrange
+            int[] collection = null;
+
+            // Act
+            Action action = () => new InsertionSort().Sort(collection);
+
+            // Assert
+            Assert.Throws<ArgumentNullException>(action);
+        }
+
         [Fact]
         public void SortDescending()
         {

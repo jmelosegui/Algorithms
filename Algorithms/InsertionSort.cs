@@ -10,6 +10,11 @@ namespace Algorithms
     {
         public void Sort<T>(IList<T> list, SortDirection direction = SortDirection.Asc)
         {
+            if (list == null)
+            {
+                throw new ArgumentNullException(nameof(list));
+            }
+
             for (int j = 0; j < list.Count; j++)
             {
                 var currentItem = list[j];
