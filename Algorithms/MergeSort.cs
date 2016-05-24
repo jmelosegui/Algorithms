@@ -21,34 +21,31 @@ namespace Algorithms
             InternalSort(list, p, r, direction);
         }
 
-        private static void InternalSort<T>(IList<T> list, int p, int r, SortDirection direction)
+        private static void InternalSort<T>(IList<T> list, int low, int high, SortDirection direction)
         {
-            if (p < r)
+            if (low < high)
             {
-                int q = (p + r) / 2;
+                int middle = (low + high) / 2;
 
-                InternalSort(list, p, q, direction);
-                InternalSort(list, q + 1, r, direction);
-                InternalMerge(list, p, q, r, direction);
+                InternalSort(list, low, middle, direction);
+                InternalSort(list, middle + 1, high, direction);
+                InternalMerge(list, low, middle, high, direction);
             }
         }
 
-        private static void InternalMerge<T>(IList<T> list, int p, int q, int r, SortDirection direction)
+        private static void InternalMerge<T>(IList<T> list, int low, int middle, int high, SortDirection direction)
         {
-            int n1 = q - p + 1;
-            int n2 = r - q;
-
-            T[] left = new T[n1];
-            T[] right = new T[n2];
+            T[] left = new T[middle - low + 1];
+            T[] right = new T[high - middle];
 
             for (int i = 0; i < left.Length; i++)
             {
-                left[i] = list[p + i];
+                left[i] = list[low + i];
             }
 
             for (int j = 0; j < right.Length; j++)
             {
-                right[j] = list[q + j + 1];
+                right[j] = list[middle + j + 1];
             }
 
             Func<int, int, bool> comparison;
@@ -64,7 +61,7 @@ namespace Algorithms
 
             int x = 0;
             int y = 0;
-            for (int k = p; k <= r; k++)
+            for (int k = low; k <= high; k++)
             {
                 if (y == right.Length)
                 {
