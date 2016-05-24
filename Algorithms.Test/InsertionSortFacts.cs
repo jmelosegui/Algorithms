@@ -1,11 +1,9 @@
 ﻿// Copyright (c) to jmelosegui. All rights reserved.
 // Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
 
-using System;
-using Xunit.Sdk;
-
 namespace Algorithms.Test
 {
+    using System;
     using Xunit;
 
     public class InsertionSortFacts
@@ -17,7 +15,7 @@ namespace Algorithms.Test
             int[] collection = null;
 
             // Act
-            Action action = () => collection.Sort();
+            Action action = () => InsertionSort.Sort(collection);
 
             // Assert
             Assert.Throws<ArgumentNullException>(action);
@@ -30,7 +28,7 @@ namespace Algorithms.Test
             var collection = new[] { 5, 2, 4, 6, 1, 3 };
 
             // Act
-            collection.Sort(SortDirection.Desc);
+            InsertionSort.Sort(collection, SortDirection.Desc);
 
             // Assert
             Assert.Equal(6, collection[0]);
@@ -48,7 +46,7 @@ namespace Algorithms.Test
             var collection = new[] { 5, 2, 4, 6, 1, 3 };
 
             // Act
-            collection.Sort();
+            InsertionSort.Sort(collection);
 
             // Assert
             Assert.Equal(1, collection[0]);

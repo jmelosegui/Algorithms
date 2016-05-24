@@ -8,7 +8,7 @@ namespace Algorithms
 
     public static class InsertionSort
     {
-        public static void Sort<T>(this IList<T> list, SortDirection direction = SortDirection.Asc)
+        public static void Sort<T>(IList<T> list, SortDirection direction = SortDirection.Asc)
         {
             if (list == null)
             {
