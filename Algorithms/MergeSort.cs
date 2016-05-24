@@ -15,10 +15,10 @@ namespace Algorithms
                 throw new ArgumentNullException(nameof(list));
             }
 
-            int p = 0;
-            int r = list.Count - 1;
+            int low = 0;
+            int high = list.Count - 1;
 
-            InternalSort(list, p, r, direction);
+            InternalSort(list, low, high, direction);
         }
 
         private static void InternalSort<T>(IList<T> list, int low, int high, SortDirection direction)
