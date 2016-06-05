@@ -36,6 +36,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BinarySearchFacts.cs" />
     <Compile Include="MergeSortFacts.cs" />
     <Compile Include="InsertionSortFacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
