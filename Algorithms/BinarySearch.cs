@@ -3,16 +3,60 @@
 
 namespace Algorithms
 {
+    using System;
     using System.Collections.Generic;
 
     public static class BinarySearch
     {
-        public static int Search<T>(IList<T> list, T itemToSearch)
+        private static readonly Func<int, int, SortDirection, bool> Comparison = (left, right, sortDirection) =>
         {
-            return Search<T>(list, itemToSearch, 0, list.Count - 1);
+            if (sortDirection == SortDirection.Asc)
+            {
+                return left > right;
+            }
+
+            return left < right;
+        };
+
+        public static int IterativeSearch<T>(IList<T> list, T itemToSearch, SortDirection sortDirection = SortDirection.Asc)
+        {
+            int low = 0;
+            int high = list.Count - 1;
+
+            var levels = Math.Ceiling(Math.Log(list.Count, 2));
+            for (int i = 0; i < levels; i++)
+            {
+                int middle = (high + low) / 2;
+
+                if (list[middle].GetHashCode() == itemToSearch.GetHashCode())
+                {
+                    return middle;
+                }
+
+                if (Comparison(list[middle].GetHashCode(), itemToSearch.GetHashCode(), sortDirection))
+                {
+                    high = middle - 1;
+                }
+                else
+                {
+                    low = middle + 1;
+                }
+            }
+
+            return -1;
         }
 
-        private static int Search<T>(IList<T> list, T itemToSearch, int low, int high)
+        public static int RecursiveSearch<T>(IList<T> list, T itemToSearch, SortDirection sortDirection = SortDirection.Asc)
+        {
+            if (list == null)
+            {
+                throw new ArgumentNullException(nameof(list));
+            }
+
+            return RecursiveSearch<T>(list, itemToSearch, 0, list.Count - 1, sortDirection);
+        }
+
+        private static int RecursiveSearch<T>(IList<T> list, T itemToSearch, int low, int high, SortDirection sortDirection)
         {
             if (low > high)
             {
@@ -26,12 +70,16 @@ namespace Algorithms
                 return middle;
             }
 
-            if (list[middle].GetHashCode() > itemToSearch.GetHashCode())
+            if (Comparison(list[middle].GetHashCode(), itemToSearch.GetHashCode(), sortDirection))
             {
-                return Search(list, itemToSearch, low, middle - 1);
+                high = middle - 1;
+            }
+            else
+            {
+                low = middle + 1;
             }
 
-            return Search(list, itemToSearch, middle + 1, high);
+            return RecursiveSearch(list, itemToSearch, low, high, sortDirection);
         }
     }
 }

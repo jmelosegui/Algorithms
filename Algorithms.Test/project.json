@@ -1,7 +1,8 @@
 ﻿{
   "supports": {},
   "dependencies": {
-    "xunit": "2.1.0"
+    "xunit": "2.1.0",
+    "xunit.runner.visualstudio": "2.2.0"
   },
   "frameworks": {
     ".NETFramework,Version=v4.6.1": {}
