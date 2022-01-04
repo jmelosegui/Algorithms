@@ -6,6 +6,6 @@ namespace Algorithms
     public enum SortDirection
     {
         Asc,
-        Desc
+        Desc,
     }
 }
